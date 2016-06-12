@@ -5,7 +5,7 @@
   "leave_on_terminate": false,
   "skip_leave_on_interrupt": true,
   "datacenter": "{{ region }}",
-  "server": false,
+  "server": true,
   "bind_addr": "{{ bind_address }}",
-  "start_join": [{{ consul_servers }}]
+  "bootstrap_expect": {{ bootstrap_expect }}
 }

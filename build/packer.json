@@ -10,7 +10,7 @@
       "source_ami":    "{{user `source_ami`}}",
       "instance_type": "t2.micro",
       "ssh_username":  "ubuntu",
-      "ami_name":      "nomad-agent-server-{{timestamp}}",
+      "ami_name":      "consul-nomad-server-{{timestamp}}",
       "ami_regions":   ["{{user `aws_region`}}"]
     }
   ],
@@ -46,10 +46,6 @@
     {
       "type":   "shell",
       "script": "{{template_dir}}/dnsmasq_install.sh"
-    },
-    {
-      "type":   "shell",
-      "script": "{{template_dir}}/docker_install.sh"
     }
   ]
 }

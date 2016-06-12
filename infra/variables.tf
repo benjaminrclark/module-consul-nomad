@@ -11,26 +11,8 @@ variable "aws_secret_key" {
     description = "Secret key for AWS"
 }
 
-variable "aws_region" {
-    description = "Region where we will operate."
-    default = "eu-west-1"
-}
-
-variable "aws_availability_zones" {
-    description  = "Availability zones where we will operate."
-    default =  "eu-west-1a,eu-west-1b,eu-west-1c,eu-west-1d"
-}
-
-variable "consul_servers" {
-    description = "Addresses of the consul servers"
-}
-
 variable "ami" {
-    description = "AMI to use for the nomad workers"
-}
-
-variable "consul_security_group" {
-    description = "Security group for consul"
+    description = "AMI to use for Consul"
 }
 
 variable "key_name" {
@@ -58,22 +40,24 @@ variable "vpc_id" {
     description = "VPC ID"
 }
 
+variable "aws_region" {
+    description = "Region where we will operate."
+    default = "eu-west-1"
+}
+
+variable "aws_availability_zones" {
+    description  = "Availability zones where we will operate."
+    default =  "eu-west-1a,eu-west-1b,eu-west-1c,eu-west-1d"
+}
 
 variable "instance_type" {
-    description = "Instance type for the nomad workers"
-    default = "c4.large"
+    description = "Instance type for the consul servers"
+    default = "t2.micro"
 }
 
 variable "servers_count" {
-    description = "Number of workers to create"
-    default = "1"
+    description = "Number of servers to create - 1, 3, or 5"
+    default = "3"
 }
 
 
-variable "route53_zone_id" {
-    description = "Zone id for route53 hosted zone"
-}
-
-variable "route53_domain_name" {
-    description = "Route53 hosted zone apex"
-}

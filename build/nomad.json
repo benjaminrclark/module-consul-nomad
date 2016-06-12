@@ -7,13 +7,11 @@
   "leave_on_interrupt": false,
   "bind_addr": "0.0.0.0",
   "advertise": {
-    "rpc": "{{ bind_address }}:4647"
-  },
-  "client": {
-    "enabled": true,
-    "servers": [{{ nomad_servers }}],
-    "options": {
-      "driver.raw_exec.enable": "1"
-    } 
+    "rpc": "{{ bind_address }}:4647",
+    "serf": "{{ bind_address}}:4648"
+  }
+  "server": {
+    "bootstrap_expect": {{ bootstrap_expect }},
+    "enabled": true
   }
 }
