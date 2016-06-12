@@ -1,0 +1,11 @@
+{
+  "node_name": "{{ instance_id }}",
+  "data_dir": "/opt/consul/data",
+  "ui_dir": "/opt/consul/web",
+  "leave_on_terminate": false,
+  "skip_leave_on_interrupt": true,
+  "datacenter": "{{ region }}",
+  "server": false,
+  "bind_addr": "{{ bind_address }}",
+  "start_join": [{{ consul_servers }}]
+}

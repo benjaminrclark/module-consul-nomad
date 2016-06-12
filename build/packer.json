@@ -1,0 +1,55 @@
+{
+  "variables": {
+    "aws_region":             "{{env `AWS_REGION`}}",
+    "source_ami":         "ami-464af835"
+  },
+  "builders": [
+    {
+      "type":          "amazon-ebs",
+      "region":        "{{user `aws_region`}}",
+      "source_ami":    "{{user `source_ami`}}",
+      "instance_type": "t2.micro",
+      "ssh_username":  "ubuntu",
+      "ami_name":      "nomad-agent-server-{{timestamp}}",
+      "ami_regions":   ["{{user `aws_region`}}"]
+    }
+  ],
+  "provisioners": [
+    {
+      "type":        "file",
+      "source":      "{{template_dir}}/consul.json",
+      "destination": "/tmp/consul.json.tmp"
+    },
+    {
+      "type":        "file",
+      "source":      "{{template_dir}}/consul.conf",
+      "destination": "/tmp/consul.conf"
+    },
+    {
+      "type":   "shell",
+      "script": "{{template_dir}}/consul_install.sh"
+    },
+    {
+      "type":        "file",
+      "source":      "{{template_dir}}/nomad.json",
+      "destination": "/tmp/nomad.json.tmp"
+    },
+    {
+      "type":        "file",
+      "source":      "{{template_dir}}/nomad.conf",
+      "destination": "/tmp/nomad.conf"
+    },
+    {
+      "type":   "shell",
+      "script": "{{template_dir}}/nomad_install.sh"
+    },
+    {
+      "type":   "shell",
+      "script": "{{template_dir}}/dnsmasq_install.sh"
+    },
+    {
+      "type":   "shell",
+      "script": "{{template_dir}}/docker_install.sh"
+    }
+  ]
+}
