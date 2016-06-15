@@ -15,6 +15,10 @@ variable "ami" {
     description = "AMI to use for Consul"
 }
 
+variable "ami_user" {
+    description = "Username to use when connecting to the consul server"
+}
+
 variable "key_name" {
     description = "SSH key name"
 }

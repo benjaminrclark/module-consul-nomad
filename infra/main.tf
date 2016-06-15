@@ -34,7 +34,7 @@ resource "aws_instance" "consul" {
 resource "null_resource" "configure_consul_server" {
 
   connection {
-    user = "ubuntu"
+    user = "${var.ami_user}"
     host = "${element(aws_instance.consul.*.public_ip, 0)}"
   }
 

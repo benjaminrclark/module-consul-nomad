@@ -2,6 +2,10 @@ output "server_addresses" {
     value = "${join(",",aws_instance.consul.*.private_ip)}"
 }
 
+output "server_user" {
+    value = "${var.ami_user}"
+}
+
 output "server_public_addresses" {
     value = "${join(",",aws_instance.consul.*.public_ip)}"
 }
