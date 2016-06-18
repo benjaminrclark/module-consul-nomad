@@ -1,17 +1,30 @@
 {
   "variables": {
-    "aws_region":             "{{env `AWS_REGION`}}",
-    "source_ami":         "ami-464af835"
+    "aws_access_key":   "{{env `AWS_ACCESS_KEY_ID`}}",
+    "aws_secret_key":   "{{env `AWS_SECRET_ACCESS_KEY`}}",
+    "aws_region":       "{{env `AWS_DEFAULT_REGION`}}",
+    "git_short_commit": "{{env `GIT_SHORT_COMMIT`}}",
+    "git_branch":       "{{env `GIT_BRANCH`}}",
+    "app_name":         "{{env `APP_NAME`}}",
+    "source_ami":       "ami-464af835",
+    "source_username":  "ubuntu"
   },
   "builders": [
     {
       "type":          "amazon-ebs",
       "region":        "{{user `aws_region`}}",
+      "access_key":    "{{user `aws_access_key`}}",
+      "secret_key":    "{{user `aws_secret_key`}}",
       "source_ami":    "{{user `source_ami`}}",
       "instance_type": "t2.micro",
-      "ssh_username":  "ubuntu",
-      "ami_name":      "consul-nomad-server-{{timestamp}}",
-      "ami_regions":   ["{{user `aws_region`}}"]
+      "ssh_username":  "{{user `source_username`}}",
+      "ami_name":      "{{user `app_name`}}-{{timestamp}}",
+      "ami_regions":   ["{{user `aws_region`}}"],
+      "tags":          {
+        "app_name":         "{{user `app_name`}}",
+        "git_short_commit": "{{user `git_short_commit`}}",
+        "git_branch":       "{{user `git_branch`}}"
+      },
     }
   ],
   "provisioners": [

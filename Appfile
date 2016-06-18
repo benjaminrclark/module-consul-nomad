@@ -1,0 +1,6 @@
+{
+  "application": {
+    "name": "consul-server",
+    "type": "custom"
+  }
+}
