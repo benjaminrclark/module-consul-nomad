@@ -18,7 +18,7 @@
       "source_ami":    "{{user `source_ami`}}",
       "instance_type": "t2.micro",
       "ssh_username":  "{{user `source_username`}}",
-      "ami_name":      "{{user `app_name`}}-{{git_short_commit}}",
+      "ami_name":      "{{user `app_name`}}-{{user `git_short_commit`}}",
       "ami_regions":   ["{{user `aws_region`}}"],
       "tags":          {
         "app_name":         "{{user `app_name`}}",
