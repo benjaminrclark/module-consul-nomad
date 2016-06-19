@@ -83,7 +83,6 @@ resource "aws_security_group_rule" "consul_cluster_ssh_ingress" {
     from_port = 22
     to_port = 22
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
     security_group_id = "${aws_security_group.consul.id}"
     source_security_group_id = "${var.bastion_security_group}"
 }
