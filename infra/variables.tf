@@ -64,4 +64,10 @@ variable "servers_count" {
     default = "3"
 }
 
+variable "bastion_hosts" {
+    description = "Public IP addresses of the bastion hosts"
+}
 
+variable "bastion_security_group" {
+    description = "Security Group id of the bastion security group"
+}
