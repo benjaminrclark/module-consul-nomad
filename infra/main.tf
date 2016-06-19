@@ -35,7 +35,7 @@ resource "null_resource" "configure_consul_server" {
 
   connection {
     user = "${var.ami_user}"
-    host = "${element(aws_instance.consul.*.public_ip, 0)}"
+    host = "${element(aws_instance.consul.*.private_ip, 0)}"
     bastion_host = "${element(split(",",var.bastion_hosts), 0)}"
   }
 
