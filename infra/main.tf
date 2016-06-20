@@ -78,6 +78,24 @@ resource "aws_security_group_rule" "consul_cluster_tcp_ingress" {
     security_group_id = "${aws_security_group.consul.id}"
 }
 
+resource "aws_security_group_rule" "consul_cluster_udp_egress" {
+    type = "egress"
+    from_port = 1
+    to_port = 65535
+    protocol = "udp"
+    cidr_blocks = ["${var.vpc_cidr}"]
+    security_group_id = "${aws_security_group.consul.id}"
+}
+
+resource "aws_security_group_rule" "consul_cluster_tcp_egress" {
+    type = "egress"
+    from_port = 1
+    to_port = 65535
+    protocol = "tcp"
+    cidr_blocks = ["${var.vpc_cidr}"]
+    security_group_id = "${aws_security_group.consul.id}"
+}
+
 resource "aws_security_group_rule" "consul_cluster_ssh_ingress" {
     type = "ingress"
     from_port = 22
